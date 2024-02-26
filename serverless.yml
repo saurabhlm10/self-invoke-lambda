@@ -12,9 +12,9 @@ provider:
   region: ap-south-1
 
 functions:
-  selfInvoke:
+  collectPosts:
     handler: index.handler
     events:
       - httpApi:
-          path: /selfInvoke
+          path: /collectPosts/{page}
           method: get
