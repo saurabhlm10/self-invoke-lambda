@@ -3,6 +3,9 @@ app: self-invoke
 service: self-invoke
 frameworkVersion: "3"
 
+plugins:
+  - serverless-plugin-typescript
+
 provider:
   name: aws
   runtime: nodejs18.x

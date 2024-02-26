@@ -1,10 +1,11 @@
-const { fetchRedis } = require("./helpers/fetchRedis");
-const { Lambda } = require("@aws-sdk/client-lambda");
+import { Lambda } from "@aws-sdk/client-lambda";
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
+import { fetchRedis } from "./helpers/fetchRedis";
 
 // Initialize the Lambda client
 const lambda = new Lambda({ region: "ap-south-1" });
 
-module.exports.handler = async (event) => {
+module.exports.handler = async (event: APIGatewayProxyEvent) => {
   const redisKey = "Testing-Lambda";
 
   const currentIndex = await fetchRedis("get", redisKey);

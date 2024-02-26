@@ -1,7 +1,7 @@
-const axios = require("axios");
-const { ENV } = require("../constants.js");
+import axios from "axios";
+import { ENV } from "../constants";
 
-exports.fetchRedis = async (command, ...args) => {
+export const fetchRedis = async (command: string, ...args: string[]) => {
   const commandUrl = `${ENV.upstashRedisRESTUrl}/${command}/${args.join("/")}`;
 
   const response = await axios.get(commandUrl, {
@@ -15,8 +15,8 @@ exports.fetchRedis = async (command, ...args) => {
   }
 
   if (command === "get") {
-    console.log("REDIS RESPONSE", response.data.result);
     if (response.data.result) {
+      console.log("REDIS RESPONSE", response.data.result);
       const jsonString = response.data.result.replace(/(\w+):/g, '"$1":');
       const data = JSON.parse(jsonString);
       return data;
