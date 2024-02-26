@@ -1,0 +1,17 @@
+org: saurabhlm10
+app: self-invoke
+service: self-invoke
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ap-south-1
+
+functions:
+  selfInvoke:
+    handler: index.handler
+    events:
+      - httpApi:
+          path: /selfInvoke
+          method: get
