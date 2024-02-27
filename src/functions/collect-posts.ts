@@ -8,6 +8,7 @@ import { getReelsFromApify } from "../helpers/getReelsFromApify";
 import { getFilteredReels } from "../helpers/getFilteredReels";
 import { uploadReelToDB } from "../helpers/uploadReelToDB";
 import connectToDb from "../config/db";
+import IGPageModel from "../model/IGPage";
 
 // Initialize the Lambda client
 const lambda = new Lambda({ region: "ap-south-1" });
@@ -40,6 +41,13 @@ module.exports.handler = async (event: any) => {
   };
 
   try {
+    // Check if page exists in DB
+    const pageExists = await IGPageModel.exists({ name: page });
+
+    if (!pageExists) {
+      console.log("Page does not exist in DB");
+      return { message: "Page does not exist in DB" };
+    }
     // Get Current State from Redis
     const rawResponse = await fetchRedis("get", redisKey);
 
