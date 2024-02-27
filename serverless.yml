@@ -13,7 +13,7 @@ provider:
 
 functions:
   collectPosts:
-    handler: index.handler
+    handler: src/functions/collect-posts.handler
     events:
       - httpApi:
           path: /collectPosts/{page}

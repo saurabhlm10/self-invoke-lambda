@@ -1,14 +1,13 @@
 import { Lambda } from "@aws-sdk/client-lambda";
-import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
-import { fetchRedis } from "./helpers/fetchRedis";
-import { getCurrentMonthYearName } from "./helpers/getCurrentMonthYearName";
-import { RedisEntry, StatusValues } from "./types/RedisEntry.type";
-import { ENV } from "./constants";
-import { get10Pages } from "./helpers/get10Pages";
-import { getReelsFromApify } from "./helpers/getReelsFromApify";
-import { getFilteredReels } from "./helpers/getFilteredReels";
-import { uploadReelToDB } from "./helpers/uploadReelToDB";
-import connectToDb from "./config/db";
+import { fetchRedis } from "../helpers/fetchRedis";
+import { getCurrentMonthYearName } from "../helpers/getCurrentMonthYearName";
+import { RedisEntry, StatusValues } from "../types/RedisEntry.type";
+import { ENV } from "../constants";
+import { get10Pages } from "../helpers/get10Pages";
+import { getReelsFromApify } from "../helpers/getReelsFromApify";
+import { getFilteredReels } from "../helpers/getFilteredReels";
+import { uploadReelToDB } from "../helpers/uploadReelToDB";
+import connectToDb from "../config/db";
 
 // Initialize the Lambda client
 const lambda = new Lambda({ region: "ap-south-1" });
