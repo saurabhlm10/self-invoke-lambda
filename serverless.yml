@@ -14,8 +14,14 @@ provider:
 
 functions:
   collectPosts:
-    handler: src/functions/collect-posts.handler
+    handler: src/functions/collect-posts.function.handler
     events:
       - httpApi:
           path: /collectPosts/{page}
+          method: get
+  checkPagePostCollectionStatus:
+    handler: src/functions/check-page-post-collection-status.function.handler
+    events:
+      - httpApi:
+          path: /checkPagePostCollectionStatus/{page}
           method: get
